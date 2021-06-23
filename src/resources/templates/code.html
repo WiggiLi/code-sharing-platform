@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"></title>
+    <link rel="stylesheet"
+          target="_blank" href="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/styles/default.min.css">
+    <script src="//cdn.jsdelivr.net/gh/highlightjs/cdn-release@10.2.1/build/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+</head>
+<body>
+<div th:each="code : ${codes}">
+    <p><span id="load_date"th:text="${code.getDate()}" > </span></p>
+    <div th:if="${code.isViewLimit()}"><span id="views_restriction" th:text="${code.getViews()}">  </span></div>
+    <div th:if="${code.getLifeTime() > 0}"><span id="time_restriction" th:text="${code.getLifeTime()}"> </span></div>
+    <pre id="code_snippet"> <code  th:text="${code.getCode()}"> </code></pre>
+</div>
+</body>
+</html>
